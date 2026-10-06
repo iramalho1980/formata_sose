@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversor de formato</title>
+  <style>
+    :root{--a:#09133d;--b:#32255d;--c:#dc3657;--glass:rgba(17,20,47,.76);--line:rgba(255,255,255,.2);--orange:darkorange;--ink:#f5f3fc;--muted:#aaa7bd}
+    *{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font:13px/1.45 Verdana,Geneva,sans-serif;color:var(--ink);background:linear-gradient(145deg,var(--a),var(--b) 48%,var(--c));overflow-x:hidden}
+    body:before,body:after{content:"";position:fixed;z-index:-1;pointer-events:none;filter:blur(7px);border-radius:50%}body:before{width:70vw;height:45vw;top:-18vw;left:-14vw;background:linear-gradient(135deg,#3c65b0,#53bbc7 55%,transparent);transform:rotate(22deg)}body:after{width:75vw;height:30vw;right:-18vw;bottom:0;background:linear-gradient(110deg,transparent,#4b47c5 35%,#ec3451);transform:rotate(10deg)}
+    .topbar{height:32px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(10,13,37,.48);backdrop-filter:blur(18px);font-size:11px}.menus,.system{display:flex;align-items:center;gap:16px}.system{gap:10px;font-size:10px}.topbar b{font-weight:bold}
+    .page{min-height:calc(100vh - 32px);display:grid;place-items:center;padding:34px 18px 100px}.app{width:min(1050px,100%);overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--glass);box-shadow:0 28px 80px #10072599,0 0 45px #744dff3d,inset 0 1px #ffffff38;backdrop-filter:blur(28px) saturate(145%)}
+    .app-head{height:58px;display:flex;align-items:center;gap:15px;padding:0 17px;border-bottom:1px solid var(--line);background:#12132d45}.traffic{display:flex;gap:7px}.traffic i{display:block;width:11px;height:11px;border-radius:50%}.traffic i:nth-child(1){background:#ff5e57}.traffic i:nth-child(2){background:#ffbd2e}.traffic i:nth-child(3){background:#28c840}.app-name{flex:1;text-align:center;color:#e5e1f0;font-size:12px}.head-action{width:27px;height:27px;border:1px solid #ffffff22;border-radius:8px;color:#ddd9ee;background:#ffffff0d}
+    .main{padding:20px 25px 30px}.title-row{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.title-row h1{margin:0;color:var(--orange);font:bold 21px Verdana,Geneva,sans-serif}.title-row p{margin:5px 0 0;color:var(--muted);font-size:10px}.status-online{color:#5fe0a2;font-size:10px}
+    .hint{margin:0 0 15px;padding:10px 13px;border-radius:9px;background:#ffffff0d;color:#d3d0df;font-size:11px}.hint b{color:var(--orange)}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{min-width:0;overflow:hidden;border:1px solid #ffffff2c;border-radius:11px;background:#080a1f55;box-shadow:inset 0 1px #ffffff18}.card-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #ffffff19;color:var(--orange);font:bold 15px Verdana,Geneva,sans-serif}.card-head small{color:#aaa6bb;font:10px Verdana,Geneva,sans-serif}.editor{display:block;width:100%;height:300px;padding:14px;border:0;outline:0;resize:vertical;overflow:auto;color:#eeeaf7;background:#05071659;font:13px/1.55 Verdana,Geneva,sans-serif;scrollbar-width:thin;scrollbar-color:#ff557f #ffffff12}.editor:focus{background:#05071985;box-shadow:inset 0 0 0 1px #ff557f66}.editor::placeholder{color:#88859c}.editor::-webkit-scrollbar{width:10px}.editor::-webkit-scrollbar-track{background:#ffffff0d}.editor::-webkit-scrollbar-thumb{border:3px solid transparent;border-radius:9px;background:linear-gradient(#ff557f,#8d4bff);background-clip:padding-box}.card-status{min-height:27px;padding:7px 13px;color:#9995aa;font-size:10px}.card-status.ok{color:#60dfa0}.card-status.error{color:#ff839a}
+    .dock{position:fixed;z-index:10;bottom:15px;left:50%;display:flex;gap:9px;padding:10px 13px;transform:translateX(-50%);border:1px solid #ffffff42;border-radius:17px;background:linear-gradient(145deg,#ffffff2e,#211b3dcc);box-shadow:0 13px 36px #0008,0 0 23px #ae36ff44,inset 0 1px #ffffff35;backdrop-filter:blur(24px)}.dock button{display:grid;place-items:center;width:43px;height:43px;border:0;border-radius:11px;color:#e9e5f5;background:linear-gradient(145deg,#ffffff2e,#ffffff0d);box-shadow:inset 0 1px #ffffff3b;cursor:pointer;transition:.2s}.dock button:hover{color:#fff;background:linear-gradient(145deg,#9445ff,#ed3d78);transform:translateY(-4px);box-shadow:0 0 20px #e83882aa}.dock svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .progress{position:fixed;z-index:30;inset:0;display:grid;place-items:center;background:#0d071f8c;backdrop-filter:blur(9px)}.progress-box{display:grid;justify-items:center;gap:10px;padding:25px 32px;border:1px solid #ffffff38;border-radius:14px;background:#23143fd9;box-shadow:0 0 30px #e42c7d52}.spinner{width:70px;height:70px;animation:spin 1.2s linear infinite}.spinner circle{fill:none;stroke:#ff4b78;stroke-width:7;stroke-linecap:round;stroke-dasharray:30 17 18 17 38 17;filter:drop-shadow(0 0 5px #ff4b78)}.spinner circle:nth-child(2){opacity:.5;stroke:#a34eff}.progress-label{color:#ff83a0;font-size:10px;text-transform:uppercase;letter-spacing:.1em}.hidden{display:none!important}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:760px){.cards{grid-template-columns:1fr}.main{padding:17px 14px 25px}.title-row{align-items:start;gap:8px}.title-row h1{font-size:17px}.editor{height:230px}.dock{bottom:10px}.menus span:nth-of-type(n+3),.system span:not(:last-child){display:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="menus"><b>●</b><b>Conversor</b><span>Arquivo</span><span>Editar</span><span>Visualizar</span><span>Janela</span><span>Ajuda</span></div><div class="system"><span>◐</span><span>⌁</span><span>◉</span><span>Qui 11:22</span></div></header>
+  <main class="page"><section class="app"><header class="app-head"><div class="traffic"><i></i><i></i><i></i></div><div class="app-name">Conversor de relatório</div><button class="head-action" aria-label="Opções">⋯</button></header><div class="main"><div class="title-row"><div><h1>Formato correto</h1><p>Gere texto com as tags literais prontas para gravar ou copiar.</p></div><span class="status-online">● pronto</span></div><p class="hint"><b>Como usar:</b> cole ou importe o arquivo errado, converta e copie o conteúdo exatamente como aparece no resultado.</p><div class="cards"><article class="card"><div class="card-head"><span>Colar dizeres</span><small>entrada editável</small></div><textarea id="source" class="editor" spellcheck="false" placeholder="Cole aqui os dizeres no formato errado..."></textarea><div id="sourceStatus" class="card-status">Aguardando conteúdo.</div></article><article class="card"><div class="card-head"><span>Resultado correto</span><small>tags literais</small></div><textarea id="result" class="editor" spellcheck="false" placeholder="O resultado com as tags será gerado aqui..."></textarea><div id="resultStatus" class="card-status">Os títulos serão gerados com b + font color darkorange.</div></article></div></div></section></main>
+  <nav class="dock" aria-label="Ações"><button id="importBtn" title="Importar arquivo" aria-label="Importar arquivo"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 16v3h14v-3"/></svg></button><button id="convertBtn" title="Converter" aria-label="Converter"><svg viewBox="0 0 24 24"><path d="M4 7h11M11 3l4 4-4 4M20 17H9m4-4-4 4 4 4"/></svg></button><button id="copyBtn" title="Copiar tags para área de transferência" aria-label="Copiar tags para área de transferência"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg></button><button id="saveBtn" title="Salvar arquivo TXT" aria-label="Salvar arquivo TXT"><svg viewBox="0 0 24 24"><path d="M5 4h12l2 2v14H5zM8 4v6h8V4M8 20v-6h8v6"/></svg></button><button id="clearBtn" title="Limpar" aria-label="Limpar"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 11v6m4-6v6M8 7l1-3h6l1 3m-9 0 1 13h8l1-13"/></svg></button><input id="fileInput" type="file" accept=".txt,text/plain" hidden></nav>
+  <div id="progress" class="progress hidden"><div class="progress-box"><svg class="spinner" viewBox="0 0 100 100"><circle cx="50" cy="50" r="34"></circle><circle cx="50" cy="50" r="24"></circle></svg><div id="progressLabel" class="progress-label">Processando</div></div></div>
+  <script>
+    const source=document.getElementById('source');
+    const result=document.getElementById('result');
+    const fileInput=document.getElementById('fileInput');
+    const progress=document.getElementById('progress');
+    const progressLabel=document.getElementById('progressLabel');
+    const sourceStatus=document.getElementById('sourceStatus');
+    const resultStatus=document.getElementById('resultStatus');
+
+    const sectionMap={
+      'PARTICIPANTES':'PARTICIPANTES',
+      'EMPRESAS UTILIZADAS NO TREINAMENTO':'EMPRESAS UTILIZADAS',
+      'EMPRESAS UTILIZADAS':'EMPRESAS UTILIZADAS',
+      'MENUS, MÓDULOS E ATALHOS APRESENTADOS':'PARÂMETROS REALIZADOS',
+      'PARÂMETROS REALIZADOS':'PARÂMETROS REALIZADOS',
+      'CADASTROS REALIZADOS':'CADASTROS REALIZADOS',
+      'LANÇAMENTOS OU IMPORTAÇÕES REALIZADAS':'LANÇAMENTOS REALIZADOS',
+      'LANÇAMENTOS REALIZADOS':'LANÇAMENTOS REALIZADOS',
+      'CÁLCULOS REALIZADOS':'CÁLCULOS REALIZADOS',
+      'RELATÓRIOS, IMPRESSÕES, INFORMATIVOS E OBRIGAÇÕES GERADAS':'OUTROS ASSUNTOS NÃO MENCIONADOS ACIMA',
+      'OUTROS ASSUNTOS RELEVANTES':'OUTROS ASSUNTOS NÃO MENCIONADOS ACIMA',
+      'SATISFAÇÃO / INSATISFAÇÃO DO CLIENTE':'SATISFAÇÃO DO CLIENTE',
+      'SATISFAÇÃO DO CLIENTE':'SATISFAÇÃO DO CLIENTE',
+      'PONTOS DE ATENÇÃO PARA OS PRÓXIMOS TREINAMENTOS':'TAREFAS',
+      'TAREFAS':'TAREFAS',
+      'ITENS FALTANTES PARA PRÓXIMO TREINAMENTO':'ITENS FALTANTES PARA PRÓXIMO TREINAMENTO'
+    };
+    const order=['PARTICIPANTES','EMPRESAS UTILIZADAS','PARÂMETROS REALIZADOS','CADASTROS REALIZADOS','LANÇAMENTOS REALIZADOS','CÁLCULOS REALIZADOS','GUIAS GERADAS','OUTROS ASSUNTOS NÃO MENCIONADOS ACIMA','SATISFAÇÃO DO CLIENTE','TAREFAS','ITENS FALTANTES PARA PRÓXIMO TREINAMENTO'];
+    const icons={PARTICIPANTES:'👤','EMPRESAS UTILIZADAS':'🏢','SATISFAÇÃO DO CLIENTE':'🚨',TAREFAS:'📝','ITENS FALTANTES PARA PRÓXIMO TREINAMENTO':'✍'};
+
+    function cleanHeading(value){return value.replace(/<[^>]*>/g,'').replace(/^\s*[*#_]+\s*/,'').replace(/\s*[*#_]+\s*$/,'').replace(/\s*:\s*$/,'').trim().toUpperCase()}
+    function cleanItem(value){return value.trim().replace(/^[-•]\s*/,'').replace(/^\d+[.)]\s*/,'').replace(/^(✅|🚨|📝|✍)\s*/,'').trim()}
+    function wait(label,callback){progressLabel.textContent=label;progress.classList.remove('hidden');setTimeout(()=>{try{callback()}finally{progress.classList.add('hidden')}},550)}
+
+    function convert(raw){
+      const groups={};
+      let current=null;
+      raw.replace(/^\uFEFF/,'').split(/\r?\n/).forEach(line=>{
+        const trimmed=line.trim();
+        if(!trimmed||trimmed==='"""')return;
+        const heading=cleanHeading(trimmed);
+        if(sectionMap[heading]){current=sectionMap[heading];if(!groups[current])groups[current]=[];return}
+        if(current){const item=cleanItem(trimmed);if(item)groups[current].push(item)}
+      });
+      const output=[];
+      order.forEach(topic=>{
+        const items=groups[topic]||[];
+        if(!items.length)return;
+        output.push('<b><font color="darkorange">'+topic+':</font></b>');
+        items.forEach(item=>output.push('<font face="Verdana">'+(icons[topic]||'✅')+' '+item+'</font>'));
+        output.push('');
+      });
+      return output.join('\n').trim();
+    }
+
+    document.getElementById('importBtn').addEventListener('click',()=>fileInput.click());
+    fileInput.addEventListener('change',event=>{const file=event.target.files[0];if(!file)return;wait('Importando',()=>{const reader=new FileReader();reader.onload=()=>{source.value=String(reader.result||'');sourceStatus.textContent=file.name+' carregado.';sourceStatus.className='card-status ok'};reader.readAsText(file,'UTF-8')})});
+    document.getElementById('convertBtn').addEventListener('click',()=>{if(!source.value.trim()){sourceStatus.textContent='Cole ou importe um conteúdo antes de converter.';sourceStatus.className='card-status error';return}wait('Convertendo',()=>{const text=convert(source.value);result.value=text;resultStatus.textContent=text?'Tags geradas. Confira e copie o conteúdo literal.':'Nenhum tópico conhecido foi encontrado.';resultStatus.className='card-status '+(text?'ok':'error')})});
+    document.getElementById('copyBtn').addEventListener('click',async()=>{const text=result.value;if(!text.trim()){resultStatus.textContent='Gere o resultado antes de copiar.';resultStatus.className='card-status error';return}wait('Copiando',async()=>{try{await navigator.clipboard.writeText(text);resultStatus.textContent='Tags copiadas exatamente para a área de transferência.';resultStatus.className='card-status ok'}catch{result.focus();result.select();document.execCommand('copy');resultStatus.textContent='Tags copiadas exatamente para a área de transferência.';resultStatus.className='card-status ok'}})});
+    document.getElementById('saveBtn').addEventListener('click',()=>{if(!result.value.trim()){resultStatus.textContent='Gere o resultado antes de salvar.';resultStatus.className='card-status error';return}const blob=new Blob([result.value],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='formato-certo-com-tags.txt';link.click();URL.revokeObjectURL(url);resultStatus.textContent='Arquivo TXT salvo com as tags literais.';resultStatus.className='card-status ok'});
+    document.getElementById('clearBtn').addEventListener('click',()=>{source.value='';result.value='';sourceStatus.textContent='Aguardando conteúdo.';sourceStatus.className='card-status';resultStatus.textContent='Os títulos serão gerados com b + font color darkorange.';resultStatus.className='card-status'});
+  </script>
+</body>
+</html>
